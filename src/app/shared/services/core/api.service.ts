@@ -193,7 +193,7 @@ export class ApiService {
     let params = new HttpParams();
 
     if (!_.isEmpty(pagination)) {
-      params = params.append('row', pagination.row.toString());
+      params = params.append('per_page', pagination.per_page.toString());
       params = params.append('page', pagination.page.toString());
     } else {
       params = params.append('pagination', 'false');

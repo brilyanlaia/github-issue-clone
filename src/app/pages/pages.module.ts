@@ -17,15 +17,6 @@ const routes: Routes = [
         path: 'home',
         loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
       },
-      // AUTH GUARD USAGE EXAMPLE
-      // MATCH ROLE PARAMETER WITH RETURN FROM API RESPONSE
-
-      //  {
-      //   path: 'activated-example',
-      //   loadChildren: () => import('./activated-example/activate-example.module').then(m => m.ActivatedExampleModule),
-      //   canActivate: [AuthGuardService],
-      //   data: {roles: [Roles.user]}
-      // }
     ],
   },
 ];

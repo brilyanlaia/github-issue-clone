@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DatatableComponent } from './common/datatable/datatable.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [DatatableComponent],
   imports: [CommonModule],
   exports: [],
 })

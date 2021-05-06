@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-6">
+    <input
+      class="form-control"
+      type="text"
+      [(ngModel)]="searchFilter"
+      (keyup.enter)="search()"
+      placeholder="Search Issue                                                                                                                                                       `   "
+    />
+  </div>
+  <div class="col-6 text-left">
+    <span *ngIf="searchFilter" (click)="clearFilter()">Clear Filter</span>
+  </div>
+  <div class="col-12 mt-3" *ngIf="!detail">
+    <ngx-datatable
+      class="material"
+      [rows]="repoData"
+      [columnMode]="'force'"
+      [headerHeight]="80"
+      [footerHeight]="'50'"
+      [rowHeight]="'auto'"
+      [count]="page?.totalElements"
+      [limit]="page?.size"
+      (page)="getData($event)"
+      [externalPaging]="true"
+      (activate)="rowClicked($event)"
+    >
+      <ngx-datatable-column name="Issue Title" prop="title">
+        <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+          <strong>{{ value }}</strong>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+  <div class="col-12 mt-3" *ngIf="detail">
+    <h4>{{ detailData?.title }}#{{ detailData?.number }}</h4>
+
+    <div class="row">
+      <div class="col-8 detail-area">
+        <p [innerHtml]="detailData?.body"></p>
+      </div>
+
+      <div class="col-4 text-center">
+        <h3>Label</h3>
+        <br />
+        <button
+          type="button"
+          (click)="getByLabel(label.name)"
+          class="btn mx-1 my-1"
+          [ngStyle]="{ 'background-color': '#' + label?.color }"
+          *ngFor="let label of detailData?.labels"
+        >
+          {{ label?.name }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
